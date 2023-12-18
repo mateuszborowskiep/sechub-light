@@ -31,6 +31,14 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get --assume-yes install sed wget pip git && \
     apt-get --assume-yes clean
 
+# Install gitlekas
+RUN cd "$DOWNLOAD_FOLDER" && \
+    wget "https://github.com/zricethezav/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_checksums.txt" && \
+    wget "https://github.com/zricethezav/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" && \
+    sha256sum --check --ignore-missing "gitleaks_${GITLEAKS_VERSION}_checksums.txt" && \
+    tar --extract --gunzip --file="gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" --directory="$TOOL_FOLDER" && \
+    rm --recursive --force "$DOWNLOAD_FOLDER"/*
+
 # Install Flawfinder, Bandit, njsscan and mobsfscan
 COPY packages.txt $TOOL_FOLDER/packages.txt
 
