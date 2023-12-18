@@ -73,6 +73,34 @@
       "path": "/pds/scripts/njsscan_mock.sh",
       "scanType": "codeScan",
       "description": "Runs sjsscan mock. It returns a fixed result file."
+    },
+    {
+      "id": "PDS_GITLEAKS",
+      "path": "/pds/scripts/gitleaks.sh",
+      "scanType": "secretScan",
+      "description": "Run the secret scanner Gitleaks.",
+      "parameters": {
+        "mandatory": [
+          {
+            "key": "pds.config.supported.datatypes",
+            "default": "source"
+          }
+        ]
+      }
+    },
+    {
+      "id": "PDS_GITLEAKS_MOCK",
+      "path": "/pds/scripts/gitleaks_mock.sh",
+      "scanType": "secretScan",
+      "description": "Run the secret scanner Gitleaks.",
+      "parameters": {
+        "mandatory": [
+          {
+            "key": "pds.config.supported.datatypes",
+            "default": "source"
+          }
+        ]
+      }
     }
   ]
 }
